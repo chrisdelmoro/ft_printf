@@ -1,6 +1,7 @@
 NAME = libft.a
 
 LIB = libft.h
+LIBPATH = ../include/$(LIB)
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
@@ -58,21 +59,21 @@ BOBJ	= $(BONUS:.c=.o)
 
 ADDOBJ	= $(ADD:.c=.o)
 
-full: $(NAME) bonus add
-
 all: $(NAME)
 
-$(NAME): $(SRC) $(LIB)
-	$(CC) $(CFLAGS) -c $(SRC) -I .
+$(NAME): $(SRC) $(LIBPATH)
+	$(CC) $(CFLAGS) -c $(SRC) -I ../include/
 	ar -rc $(NAME) $(OBJ)
 
-bonus: $(BONUS) $(LIB)
-	$(CC) $(CFLAGS) -c $(BONUS) -I .
+bonus: $(BONUS) $(LIBPATH)
+	$(CC) $(CFLAGS) -c $(BONUS) -I ../include/
 	ar -rc $(NAME) $(BOBJ)
 
-add: $(ADD) $(LIB)
-	$(CC) $(CFLAGS) -c $(ADD) -I .
+add: $(ADD) $(LIBPATH)
+	$(CC) $(CFLAGS) -c $(ADD) -I ../include/
 	ar -rc $(NAME) $(ADDOBJ)
+
+full: $(NAME) bonus add
 
 clean:
 	rm -f $(OBJ) $(BOBJ) $(ADDOBJ)
@@ -82,4 +83,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: full all bonus add clean fclean re bonus
+.PHONY: all bonus add full clean fclean re bonus
