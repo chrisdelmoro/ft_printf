@@ -1,11 +1,11 @@
 all:
-	$(MAKE) -C ./libft/
+	$(MAKE) full -C ./libft/
 
 clean:
-	rm -f $(OBJ) $(BOBJ) $(ADDOBJ)
+	rm -f ./libft/*.o
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f ./libft/*.a
 
 re: fclean all
 
