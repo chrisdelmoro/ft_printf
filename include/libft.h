@@ -521,7 +521,17 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
  * 
  * @param str The address of the pointer to be free'd.
  * @param content The target to point str to.
- */ 
+ */
 void	ft_freethis(char **str, void *content);
+
+/**
+ * @brief The ft_putnbr_base_fd() function outputs a number in any base given
+ * as a the second argument to a given filedescryptor.
+ * 
+ * @param nbr The integer to output.
+ * @param base The numerical base to be outputed to.
+ * @param fd The file descriptor on which to write.
+ */
+void	ft_putnbr_base_fd(int nbr, char *base, int fd);
 
 #endif

@@ -51,7 +51,8 @@ BONUS =	ft_lstnew.c \
 		ft_lstiter.c \
 		ft_lstmap.c
 
-ADD =	ft_freethis.c
+ADD =	ft_freethis.c \
+		ft_putnbr_base_fd.c
 
 OBJ		= $(SRC:.c=.o)
 
