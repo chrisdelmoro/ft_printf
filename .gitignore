@@ -54,4 +54,5 @@ dkms.conf
 # Extensions relevant to me
 *.pdf
 /tests
+/printfTester
 .vscode

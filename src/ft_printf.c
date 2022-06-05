@@ -6,18 +6,22 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 16:12:42 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/06/04 20:24:07 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/06/04 22:04:30 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
 
-static void	ft_putunbr_fd(unsigned int n, int fd)
+static int	ft_putunbr_fd(unsigned int n, int fd)
 {
+	int	count;
+
+	count = 0;
 	if (n >= 10)
-		ft_putnbr_fd((n / 10), fd);
+		count += ft_putunbr_fd((n / 10), fd);
 	ft_putchar_fd(((n % 10) + 48), fd);
+	return (count + 1);
 }
 
 
@@ -25,6 +29,8 @@ int ft_vprintf(const char *str, va_list args)
 {
 	size_t	i;
 	int 	count;
+	char	*str_arg;
+	int int_arg = 0;
 
 	i = 0;
 	count = 0;
@@ -35,27 +41,33 @@ int ft_vprintf(const char *str, va_list args)
 			if (str[i + 1] == 'c')
 			{
 				ft_putchar_fd(va_arg(args, int), 1);
+				count++;
 			}
 			if (str[i + 1] == 's')
 			{
-				ft_putstr_fd(va_arg(args, char *), 1);
+				str_arg = va_arg(args, char *);
+				if (str_arg)
+				{
+					ft_putstr_fd(str_arg, 1);
+					count += ft_strlen(str_arg);
+				}
 			}
 			if (str[i + 1] == 'p')
 			{
 				ft_putstr_fd("0x", 1);
 				//ft_putnbr_base_fd(va_arg(args, void *), "0123456789ABCDEF", 1);
 			}
-			if (str[i + 1] == 'd')
+			if (str[i + 1] == 'd' || str[i + 1] == 'i')
 			{
-				ft_putnbr_fd(va_arg(args, int), 1);
-			}
-			if (str[i + 1] == 'i')
-			{
-				ft_putnbr_fd(va_arg(args, int), 1);
+				int_arg = va_arg(args, int);
+				str_arg = ft_itoa(int_arg);
+				count += ft_strlen(str_arg);
+				ft_putstr_fd(str_arg, 1);
+				ft_freethis(&str_arg, NULL);
 			}
 			if (str[i + 1] == 'u')
 			{
-				ft_putunbr_fd(va_arg(args, unsigned int), 1);
+				count += ft_putunbr_fd(va_arg(args, unsigned int), 1);
 			}
 			if (str[i + 1] == 'x')
 			{
