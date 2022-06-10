@@ -6,34 +6,23 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 16:12:42 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/06/04 22:04:30 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/06/10 14:54:54 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
 
-static int	ft_putunbr_fd(unsigned int n, int fd)
-{
-	int	count;
-
-	count = 0;
-	if (n >= 10)
-		count += ft_putunbr_fd((n / 10), fd);
-	ft_putchar_fd(((n % 10) + 48), fd);
-	return (count + 1);
-}
-
-
-int ft_vprintf(const char *str, va_list args)
+int	ft_vprintf(const char *str, va_list args)
 {
 	size_t	i;
-	int 	count;
+	int		count;
 	char	*str_arg;
-	int int_arg = 0;
+	int		int_arg;
 
 	i = 0;
 	count = 0;
+	int_arg = 0;
 	while (str[i])
 	{
 		if (str[i] == '%')
@@ -66,20 +55,15 @@ int ft_vprintf(const char *str, va_list args)
 				ft_freethis(&str_arg, NULL);
 			}
 			if (str[i + 1] == 'u')
-			{
 				count += ft_putunbr_fd(va_arg(args, unsigned int), 1);
-			}
 			if (str[i + 1] == 'x')
-			{
-				ft_putnbr_base_fd(va_arg(args, int), "0123456789abcdef", 1);
-			}
+				count += ft_putnbr_hex_fd(va_arg(args, int), "0123456789abcdef", 1);
 			if (str[i + 1] == 'X')
-			{
-				ft_putnbr_base_fd(va_arg(args, int), "0123456789ABCDEF", 1);
-			}
+				count += ft_putnbr_hex_fd(va_arg(args, int), "0123456789ABCDEF", 1);
 			if (str[i + 1] == '%')
 			{
 				ft_putchar_fd('%', 1);
+				count++;
 			}
 			i += 2;
 		}
@@ -93,9 +77,9 @@ int ft_vprintf(const char *str, va_list args)
 	return (count);
 }
 
-int ft_printf(const char *str, ...)
+int	ft_printf(const char *str, ...)
 {
-	va_list args;
+	va_list	args;
 	int		count;
 
 	count = 0;
