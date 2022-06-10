@@ -4,7 +4,9 @@ LIBFT_DIR	= ./libft/
 LIBFT 		= $(LIBFT_DIR)/libft.a
 
 SRC_DIR		= ./src/
-SRC			= $(SRC_DIR)ft_printf.c
+SRC			=	$(SRC_DIR)ft_printf.c \
+				$(SRC_DIR)ft_putunbr_fd.c \
+				$(SRC_DIR)ft_putnbr_hex_fd.c
 
 OBJ			= $(SRC:.c=.o)
 
@@ -17,7 +19,7 @@ $(NAME): $(SRC)
 	$(MAKE) full -C $(LIBFT_DIR)
 	cp $(LIBFT) $(NAME)
 	$(CC) $(CFLAGS) -c $(SRC) -I ./include/
-	mv ft_printf.o ./src/
+	mv *.o ./src/
 	ar -rc $(NAME) $(OBJ)
 
 clean:
