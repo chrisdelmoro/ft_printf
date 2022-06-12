@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 16:12:42 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/06/12 17:47:28 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/06/12 18:45:22 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,12 @@ int	ft_vprintf(const char *str, va_list args)
 			if (str[i + 1] == 's')
 			{
 				str_arg = va_arg(args, char *);
-				if (str_arg)
+				if (!str_arg)
+				{
+					ft_putstr_fd("(null)", 1);
+					count += 6;
+				}
+				else
 				{
 					ft_putstr_fd(str_arg, 1);
 					count += ft_strlen(str_arg);
