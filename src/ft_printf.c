@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 16:12:42 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/06/12 21:15:10 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/06/13 20:50:41 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	ft_vprintf(const char *str, va_list args)
 {
 	size_t	i;
 	int		count;
-	char	*str_arg;
 
 	i = 0;
 	count = 0;
@@ -35,12 +34,7 @@ int	ft_vprintf(const char *str, va_list args)
 			if (str[i + 1] == 'p')
 				count += ft_put_ptr(va_arg(args, unsigned long));
 			if (str[i + 1] == 'd' || str[i + 1] == 'i')
-			{
-				str_arg = ft_itoa(va_arg(args, int));
-				count += ft_strlen(str_arg);
-				ft_putstr_fd(str_arg, 1);
-				ft_freethis(&str_arg, NULL);
-			}
+				count += ft_put_di(va_arg(args, int));
 			if (str[i + 1] == 'u')
 				count += ft_putunbr_fd(va_arg(args, unsigned int), 1);
 			if (str[i + 1] == 'x')

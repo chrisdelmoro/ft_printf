@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_put_di.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/30 17:03:01 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/06/13 20:46:27 by ccamargo         ###   ########.fr       */
+/*   Created: 2022/06/13 20:45:08 by ccamargo          #+#    #+#             */
+/*   Updated: 2022/06/13 20:49:21 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <stdarg.h>
-# include "libft.h"
+int	ft_put_di(int nbr)
+{
+	char	*nbr_to_str;
+	int		count;
 
-int	ft_printf(const char *str, ...);
-int	ft_putunbr_fd(unsigned int n, int fd);
-int	ft_putnbr_hex_fd(unsigned long nbr, char *base, int fd);
-int	ft_put_ptr(unsigned long ptr);
-int	ft_print_str(const char *str);
-int	ft_put_di(int nbr);
-
-#endif
+	count = 0;
+	nbr_to_str = ft_itoa(nbr);
+	count += ft_strlen(nbr_to_str);
+	ft_putstr_fd(nbr_to_str, 1);
+	ft_freethis(&nbr_to_str, NULL);
+	return (count);
+}
