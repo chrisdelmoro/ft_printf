@@ -6,7 +6,9 @@ LIBFT 		= $(LIBFT_DIR)/libft.a
 SRC_DIR		= ./src/
 SRC			=	$(SRC_DIR)ft_printf.c \
 				$(SRC_DIR)ft_putunbr_fd.c \
-				$(SRC_DIR)ft_putnbr_hex_fd.c
+				$(SRC_DIR)ft_putnbr_hex_fd.c \
+				$(SRC_DIR)ft_put_ptr.c \
+				$(SRC_DIR)ft_print_str.c
 
 OBJ			= $(SRC:.c=.o)
 

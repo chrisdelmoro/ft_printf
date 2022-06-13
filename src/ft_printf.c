@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 16:12:42 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/06/12 18:45:22 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/06/12 21:15:10 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,11 @@
 int	ft_vprintf(const char *str, va_list args)
 {
 	size_t	i;
-	unsigned long	ptr;
 	int		count;
 	char	*str_arg;
-	int		int_arg;
 
 	i = 0;
 	count = 0;
-	int_arg = 0;
 	while (str[i])
 	{
 		if (str[i] == '%')
@@ -34,38 +31,12 @@ int	ft_vprintf(const char *str, va_list args)
 				count++;
 			}
 			if (str[i + 1] == 's')
-			{
-				str_arg = va_arg(args, char *);
-				if (!str_arg)
-				{
-					ft_putstr_fd("(null)", 1);
-					count += 6;
-				}
-				else
-				{
-					ft_putstr_fd(str_arg, 1);
-					count += ft_strlen(str_arg);
-				}
-			}
+				count += ft_print_str(va_arg(args, char *));
 			if (str[i + 1] == 'p')
-			{
-				ptr = va_arg(args, unsigned long);
-				if (!ptr)
-				{
-					ft_putstr_fd("(nil)", 1);
-					count += 5;
-				}
-				else
-				{
-					ft_putstr_fd("0x", 1);
-					count += 2;
-					count += ft_putnbr_hex_fd(ptr , "0123456789abcdef", 1);
-				}
-			}
+				count += ft_put_ptr(va_arg(args, unsigned long));
 			if (str[i + 1] == 'd' || str[i + 1] == 'i')
 			{
-				int_arg = va_arg(args, int);
-				str_arg = ft_itoa(int_arg);
+				str_arg = ft_itoa(va_arg(args, int));
 				count += ft_strlen(str_arg);
 				ft_putstr_fd(str_arg, 1);
 				ft_freethis(&str_arg, NULL);
