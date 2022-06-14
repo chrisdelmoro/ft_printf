@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_put_xX.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/30 17:03:01 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/06/13 21:26:02 by ccamargo         ###   ########.fr       */
+/*   Created: 2022/06/10 14:39:35 by ccamargo          #+#    #+#             */
+/*   Updated: 2022/06/13 21:17:50 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# define HEX_LOWER "0123456789abcdef"
-# define HEX_UPPER "0123456789ABCDEF"
+int	ft_put_x(unsigned long nbr, char *base, int fd)
+{
+	int	count;
 
-# include <stdarg.h>
-# include "libft.h"
-
-int	ft_printf(const char *str, ...);
-int	ft_put_c(int c);
-int	ft_put_u(unsigned int n, int fd);
-int	ft_put_x(unsigned long nbr, char *base, int fd);
-int	ft_put_p(unsigned long ptr);
-int	ft_put_s(const char *str);
-int	ft_put_di(int nbr);
-
-#endif
+	count = 0;
+	if (nbr / 16 > 0)
+		count += ft_put_x(nbr / 16, base, fd);
+	ft_putchar_fd(base[nbr % 16], fd);
+	return (count + 1);
+}

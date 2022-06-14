@@ -6,12 +6,11 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 16:12:42 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/06/13 20:58:50 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/06/13 21:22:57 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft.h"
 
 int	ft_vprintf(const char *str, va_list args)
 {
@@ -25,10 +24,7 @@ int	ft_vprintf(const char *str, va_list args)
 		if (str[i] == '%')
 		{
 			if (str[i + 1] == 'c')
-			{
-				ft_putchar_fd(va_arg(args, int), 1);
-				count++;
-			}
+				count += ft_put_c(va_arg(args, int));
 			if (str[i + 1] == 's')
 				count += ft_put_s(va_arg(args, char *));
 			if (str[i + 1] == 'p')
@@ -38,14 +34,11 @@ int	ft_vprintf(const char *str, va_list args)
 			if (str[i + 1] == 'u')
 				count += ft_put_u(va_arg(args, unsigned int), 1);
 			if (str[i + 1] == 'x')
-				count += ft_put_xX(va_arg(args, unsigned int), "0123456789abcdef", 1);
+				count += ft_put_x(va_arg(args, unsigned int), HEX_LOWER, 1);
 			if (str[i + 1] == 'X')
-				count += ft_put_xX(va_arg(args, unsigned int), "0123456789ABCDEF", 1);
+				count += ft_put_x(va_arg(args, unsigned int), HEX_UPPER, 1);
 			if (str[i + 1] == '%')
-			{
-				ft_putchar_fd('%', 1);
-				count++;
-			}
+				count += ft_put_c('%');
 			i += 2;
 		}
 		else
