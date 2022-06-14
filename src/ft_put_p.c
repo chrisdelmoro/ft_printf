@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_str.c                                     :+:      :+:    :+:   */
+/*   ft_put_p.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/12 20:59:19 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/06/12 21:06:52 by ccamargo         ###   ########.fr       */
+/*   Created: 2022/06/12 20:45:29 by ccamargo          #+#    #+#             */
+/*   Updated: 2022/06/13 21:00:57 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "ft_printf.h"
 
-int	ft_print_str(char *str)
+int	ft_put_p(unsigned long ptr)
 {
 	int	count;
-
+	
 	count = 0;
-	if (!str)
+	if (!ptr)
 	{
-		ft_putstr_fd("(null)", 1);
-		count += 6;
+		ft_putstr_fd("(nil)", 1);
+		count += 5;
 	}
 	else
 	{
-		ft_putstr_fd(str, 1);
-		count += ft_strlen(str);
+		ft_putstr_fd("0x", 1);
+		count += ft_put_xX(ptr , "0123456789abcdef", 1) + 2;
 	}
 	return (count);
 }

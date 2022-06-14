@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 16:12:42 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/06/13 20:50:41 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/06/13 20:58:50 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,17 @@ int	ft_vprintf(const char *str, va_list args)
 				count++;
 			}
 			if (str[i + 1] == 's')
-				count += ft_print_str(va_arg(args, char *));
+				count += ft_put_s(va_arg(args, char *));
 			if (str[i + 1] == 'p')
-				count += ft_put_ptr(va_arg(args, unsigned long));
+				count += ft_put_p(va_arg(args, unsigned long));
 			if (str[i + 1] == 'd' || str[i + 1] == 'i')
 				count += ft_put_di(va_arg(args, int));
 			if (str[i + 1] == 'u')
-				count += ft_putunbr_fd(va_arg(args, unsigned int), 1);
+				count += ft_put_u(va_arg(args, unsigned int), 1);
 			if (str[i + 1] == 'x')
-				count += ft_putnbr_hex_fd(va_arg(args, unsigned int), "0123456789abcdef", 1);
+				count += ft_put_xX(va_arg(args, unsigned int), "0123456789abcdef", 1);
 			if (str[i + 1] == 'X')
-				count += ft_putnbr_hex_fd(va_arg(args, unsigned int), "0123456789ABCDEF", 1);
+				count += ft_put_xX(va_arg(args, unsigned int), "0123456789ABCDEF", 1);
 			if (str[i + 1] == '%')
 			{
 				ft_putchar_fd('%', 1);
