@@ -6,7 +6,7 @@
 /*   By: ccamargo <ccamargo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 16:12:42 by ccamargo          #+#    #+#             */
-/*   Updated: 2022/06/13 21:40:28 by ccamargo         ###   ########.fr       */
+/*   Updated: 2022/06/13 21:46:30 by ccamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ static int	ft_vprintf(const char *str, va_list args)
 		else
 		{
 			ft_putchar_fd(str[i], 1);
-			i++;
 			count++;
+			i++;
 		}
 	}
 	return (count);
