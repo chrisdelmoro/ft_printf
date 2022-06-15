@@ -1,6 +1,6 @@
 NAME		= libftprintf.a
 
-LIBFT_DIR	= ./libft/
+LIBFT_DIR	= ./libraries/libft/
 LIBFT 		= $(LIBFT_DIR)/libft.a
 
 SRC_DIR		= ./src/
