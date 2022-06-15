@@ -20,19 +20,22 @@ CFLAGS		= -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME): $(SRC)
-	$(MAKE) full -C $(LIBFT_DIR)
-	cp $(LIBFT) $(NAME)
-	$(CC) $(CFLAGS) -c $(SRC) -I ./include/
-	mv *.o ./src/
-	ar -rc $(NAME) $(OBJ)
+	@ $(MAKE) full -C $(LIBFT_DIR)
+	@ cp $(LIBFT) $(NAME)
+	@ $(CC) $(CFLAGS) -c $(SRC) -I ./include/
+	@ mv *.o ./src/
+	@ ar -rc $(NAME) $(OBJ)
+	@ echo "$(NAME) created successfully!"
 
 clean:
-	rm -f $(LIBFT_DIR)*.o
-	rm -f $(SRC_DIR)*.o
+	@ $(MAKE) clean -C $(LIBFT_DIR)
+	@ rm -f $(SRC_DIR)*.o
+	@ echo "ft_printf object files erased successfully!"
 
 fclean: clean
-	rm -f $(LIBFT_DIR)*.a
-	rm -f $(NAME)
+	@ $(MAKE) fclean -C $(LIBFT_DIR)
+	@ rm -f $(NAME)
+	@ echo "$(NAME) library erased successfully!"
 
 re: fclean all
 

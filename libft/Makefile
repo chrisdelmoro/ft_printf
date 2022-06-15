@@ -63,24 +63,29 @@ ADDOBJ	= $(ADD:.c=.o)
 all: $(NAME)
 
 $(NAME): $(SRC) $(LIBPATH)
-	$(CC) $(CFLAGS) -c $(SRC) -I ../include/
-	ar -rc $(NAME) $(OBJ)
+	@ $(CC) $(CFLAGS) -c $(SRC) -I ../include/
+	@ ar -rc $(NAME) $(OBJ)
+	@ echo "Libft mandatory created successfully!"
 
 bonus: $(BONUS) $(LIBPATH)
-	$(CC) $(CFLAGS) -c $(BONUS) -I ../include/
-	ar -rc $(NAME) $(BOBJ)
+	@ $(CC) $(CFLAGS) -c $(BONUS) -I ../include/
+	@ ar -rc $(NAME) $(BOBJ)
+	@ echo "Libft bonus created successfully!"
 
 add: $(ADD) $(LIBPATH)
-	$(CC) $(CFLAGS) -c $(ADD) -I ../include/
-	ar -rc $(NAME) $(ADDOBJ)
+	@ $(CC) $(CFLAGS) -c $(ADD) -I ../include/
+	@ ar -rc $(NAME) $(ADDOBJ)
+	@ echo "Libft adicional created successfully!"
 
 full: $(NAME) bonus add
 
 clean:
-	rm -f $(OBJ) $(BOBJ) $(ADDOBJ)
+	@ rm -f $(OBJ) $(BOBJ) $(ADDOBJ)
+	@ echo "Libft object files erased successfully!"
 
 fclean: clean
-	rm -f $(NAME)
+	@ rm -f $(NAME)
+	@ echo "$(NAME) library erased successfully!"
 
 re: fclean all
 
