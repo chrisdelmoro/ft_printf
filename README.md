@@ -31,6 +31,9 @@
 
 In this project, we needed to implement a simple version of the libc function printf. To be more precise, this implementation recreate the following:
 
+<div style="margin-left: auto;
+            margin-right: auto">
+
 | Convertion | Usage |
 | --- | --- |
 | <div align="center"> `%c` </div> | Prints a single character. |
@@ -42,6 +45,8 @@ In this project, we needed to implement a simple version of the libc function pr
 | <div align="center"> `%x` </div> | Prints a number in hexadecimal (base 16) lowercase format. |
 | <div align="center"> `%X` </div> | Prints a number in hexadecimal (base 16) uppercase format. |
 | <div align="center"> `%%` </div> | Prints a percent sign. |
+
+</div>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
