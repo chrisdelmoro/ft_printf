@@ -1,6 +1,6 @@
 <br/>
 <p align="center">
-    <img src="https://github.com/chrisdelmoro/42cursus/blob/main/badges/ft_printfe.png" alt="Logo" width="150" height="150">
+    <img src="https://github.com/chrisdelmoro/ft_printf/blob/main/resources/repo/ft_printfe.png" alt="Logo" width="150" height="150">
 
   <p align="center">
     A printf re-implementation.
